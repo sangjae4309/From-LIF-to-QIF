@@ -200,44 +200,7 @@ from spikegd.models import AbstractPhaseOscNeuron, AbstractPseudoPhaseOscNeuron,
 
 
 
-def gaussian_receptive_field_encoding(x_value, min_val, max_val, num_neurons, beta=1.5):
-    """
-    Encodes a scalar input using Gaussian receptive fields according to the described method.
-    
-    Args:
-        x_value: The input value to encode
-        min_val: Minimum value of the data range
-        max_val: Maximum value of the data range
-        num_neurons: Number of neurons to use for encoding
-        beta: Parameter controlling the width of receptive fields (1.0-2.0, default 1.5)
-        
-    Returns:
-        Array of spike times for each encoding neuron
-    """
-    # Ensure x_value is within the specified range
-  
-    
-    # Calculate centers for each neuron's receptive field
-    i_values = jnp.arange(1, num_neurons + 1)
-    
-    centers = jnp.linspace(min_val, max_val, num_neurons)
-    
-    # Calculate width of receptive fields
-    sigma = (1.0 / beta) * (max_val - min_val) / (num_neurons - 2.0)
-    
-    # Calculate response values using Gaussian function
-    responses = jnp.exp(-((x_value - centers) ** 2) / (2 * sigma ** 2))
-    
-    # Normalize responses to [0, 1] range
-    responses = responses / jnp.max(responses)
-    
- 
-    # Convert to spike times (higher response = earlier spike)
-    T_max = 2.0  # Maximum time as described
-    spike_times = (1.0 - responses) * T_max
-    
-  
-    return spike_times
+
 
 
 def plot_parabola(neuron: AbstractPhaseOscNeuron, p, config):
