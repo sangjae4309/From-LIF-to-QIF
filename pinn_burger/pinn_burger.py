@@ -368,7 +368,7 @@ def apply_boundary_conditions(neuron: AbstractPseudoPhaseOscNeuron, p: list, con
     # d2u/dx2 = d/dx (-(T/2) du/dinput[0]) = (T^2/4) du/dinput[0]
     # du/dt = (d/dinput[1])(dinput[1]/dt) u = -T/0.99 du/dinput[1]
     # Raw network output
-    T = 2
+    T = config["T"]
     outs = eventffwd(neuron, p, input, config)
     t_outs = outfn(neuron, outs, p, config)
     pred_raw = t_outs[1] - t_outs[0]

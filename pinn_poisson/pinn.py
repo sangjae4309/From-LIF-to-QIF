@@ -266,13 +266,15 @@ def outfn(
 def apply_boundary_conditions(neuron: AbstractPseudoPhaseOscNeuron, p: list, config: dict, input):
     """Apply zero boundary conditions: u(0) = u(1) = 0"""
     # Raw network output
+    T = config["T"]
+
     outs = eventffwd(neuron, p, input, config)
     t_outs = outfn(neuron, outs, p, config)
     pred_raw = t_outs[1] - t_outs[0]
     
     # Apply zero boundary conditions using the method: u(x) = x(1-x) * N(x)
     # This ensures u(0) = u(1) = 0 automatically
-    pred = input * (2 - input) * pred_raw
+    pred = input * (T - input) * pred_raw
     return pred
 
 
@@ -320,10 +322,11 @@ def lossfn(neuron: AbstractPseudoPhaseOscNeuron,
 
 
     """Compute physics-informed loss for the PDE: -d²u/dx² = f(x)"""
+    T = config["T"]
     
     # Get second derivatives
     _, d2u_dt2 = compute_derivatives(neuron, p, config, input_physics)
-    d2u_dx2 = 4*d2u_dt2
+    d2u_dx2 = 2*T*d2u_dt2
     
     # PDE residual: -d²u/dx² - f(x) = 0
     pde_residual = -d2u_dx2 - source_term(input_physics)

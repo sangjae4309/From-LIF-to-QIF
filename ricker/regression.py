@@ -549,7 +549,7 @@ def run(
     p_init = [weights, phi0]
 
   
-    optim = optax.adabelief(1e-2)
+    optim = optax.adabelief(lr, b1=beta1, b2=beta2)
     opt_state = optim.init(p)
 
     # Metrics
