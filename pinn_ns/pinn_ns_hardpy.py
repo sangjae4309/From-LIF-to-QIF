@@ -6,8 +6,7 @@ from jax import random
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import scipy.io as sio
 
-from experiments.pinnst.pinn_ns_hard import plot_error, plot_spikes, plot_traces, run, run_example, eventffwd, outfn
-# from experiments.regression.regressionqif import plot_spikes, plot_traces, run, run_example, eventffwd, outfn
+from pinn_ns_hard import plot_error, plot_spikes, plot_traces, run, run_example, eventffwd, outfn
 from spikegd.theta import ThetaNeuron
 from spikegd.utils.plotting import (
     cm2inch,
@@ -324,5 +323,3 @@ def plot_parabola(neuron: AbstractPhaseOscNeuron, p, config):
 
 
     sio.savemat('experiments/pinnst/preds.mat', {'preds': pred})
-
-

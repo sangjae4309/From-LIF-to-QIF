@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from jax import random
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
-from experiments.deeponet.deeponetr import plot_error, plot_spikes, plot_traces, run, run_example, eventffwd, outfn_b, outfn_t
+from deeponetr import plot_error, plot_spikes, plot_traces, run, run_example, eventffwd, outfn_b, outfn_t
 from spikegd.theta import ThetaNeuron
 from spikegd.utils.plotting import (
     cm2inch,
@@ -269,5 +269,4 @@ from spikegd.theta import ThetaNeuron
 neuron_b = ThetaNeuron(config_theta["tau"], config_theta["I0"], config_theta["eps"])
 neuron_t = ThetaNeuron(config_theta["tau"], config_theta["I0"], config_theta["eps"])
 plot_solution(neuron_b, neuron_t, metrics_example["p_end"], config_theta)
-
 

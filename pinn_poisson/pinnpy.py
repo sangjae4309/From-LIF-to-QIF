@@ -6,7 +6,7 @@ from jax import random
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import numpy as np
 
-from experiments.pinn.pinn import plot_error, plot_spikes, plot_traces, run, run_example, eventffwd, outfn
+from pinn import plot_error, plot_spikes, plot_traces, run, run_example, eventffwd, outfn
 from spikegd.theta import ThetaNeuron
 from spikegd.utils.plotting import (
     cm2inch,
@@ -42,7 +42,8 @@ config_theta = {
     # Network
     "Nin": 1,
     "Nin_virtual": 1,  # #Virtual input neurons = #Pixel value bins - 1
-    "Nhidden": 64,
+    #"Nhidden": 64,
+    "Nhidden": 4,
     "Nlayer": 2,  # Number of layers
     "Nout": 2,
     "w_scale": 0.9,  # Scaling factor of initial weights
@@ -73,9 +74,6 @@ def run_theta(config: dict) -> dict:
     # metrics = run(neuron, config, progress_bar="notebook")
     metrics = run(neuron, config, progress_bar="script")
     return metrics
-
-
-
 
 
 seed = 0
@@ -359,4 +357,3 @@ def plot_parabola(neuron: AbstractPhaseOscNeuron, p, config):
 from spikegd.theta import ThetaNeuron
 neuron = ThetaNeuron(config_theta["tau"], config_theta["I0"], config_theta["eps"])
 plot_parabola(neuron, metrics_example["p_end"], config_theta)
-

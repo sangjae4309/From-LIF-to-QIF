@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from jax import random
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
-from experiments.regression_2d.regression import plot_error, plot_spikes, plot_traces, run, run_example, eventffwd, outfn
+from regression import plot_error, plot_spikes, plot_traces, run, run_example, eventffwd, outfn
 from spikegd.theta import ThetaNeuron
 from spikegd.utils.plotting import (
     cm2inch,

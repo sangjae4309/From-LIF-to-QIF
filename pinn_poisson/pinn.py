@@ -320,7 +320,6 @@ def lossfn(neuron: AbstractPseudoPhaseOscNeuron,
 
 
     """Compute physics-informed loss for the PDE: -d²u/dx² = f(x)"""
-    
     # Get second derivatives
     _, d2u_dt2 = compute_derivatives(neuron, p, config, input_physics)
     d2u_dx2 = 4*d2u_dt2

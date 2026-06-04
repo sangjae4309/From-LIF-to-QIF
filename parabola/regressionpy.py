@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from jax import random
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
-from experiments.regression_parabola_test.regression import plot_error, plot_spikes, plot_traces, run, run_example, eventffwd, outfn, forwardfn
+from regression import plot_error, plot_spikes, plot_traces, run, run_example, eventffwd, outfn, forwardfn
 from spikegd.theta import ThetaNeuron
 from spikegd.utils.plotting import (
     cm2inch,
@@ -273,5 +273,4 @@ def plot_parabola(neuron: AbstractPhaseOscNeuron, p, config):
 from spikegd.theta import ThetaNeuron
 neuron = ThetaNeuron(config_theta["tau"], config_theta["I0"], config_theta["eps"])
 plot_parabola(neuron, metrics_example["p_end"], config_theta)
-
 
