@@ -274,8 +274,9 @@ def plot_parabola(neuron: AbstractPhaseOscNeuron, p, config):
     x2 = X[:, 1]
     print(jnp.min(x1), jnp.max(x1), jnp.min(x2), jnp.max(x2))
 
-    normalized_x1 = normalize(x1,2.0)
-    normalized_x2 = normalize(x2,2.0)
+    T = config["T"]
+    normalized_x1 = normalize(x1, T)
+    normalized_x2 = normalize(x2, T)
     
    
     encoded_inputs = jnp.concat((normalized_x1, normalized_x2), axis=1)
